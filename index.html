@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>임세빈</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh; /* 화면 전체 높이 사용 */
+            display: flex;
+            justify-content: center; /* 가로 중앙 정렬 */
+            align-items: center; /* 세로 중앙 정렬 */
+            background-color: #f0f0f0; /* 배경색 */
+        }
+
+        .image-container {
+            position: relative;
+            width: 50vw; /* 화면의 50% 너비 */
+            height: 70vh; /* 화면의 50% 높이 */
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%; /* 이미지가 화면 너비의 50%를 차지하도록 설정 */
+            height: 100%;
+            object-fit: cover; /* 이미지가 컨테이너에 꽉 차도록 설정 */
+        }
+
+        .mouth {
+            transition: transform 0.1s ease-in-out; /* 0.1초 동안 애니메이션 */
+        }
+
+        /* 클릭 시 변화된 위치 */
+        .mouth.down {
+            transform: translateY(20px); /* 20px 만큼 아래로 이동 */
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="sebin/head.png" alt="첫 번째 이미지">
+        <img src="sebin/mouth.png" alt="두 번째 이미지" class="mouth">
+    </div>
+
+    <!-- 소리 파일 (fart.mp3) 추가 -->
+    <audio id="sound" src="sebin/fart.mp3" preload="auto"></audio>
+
+    <script>
+        // 이미지 클릭 시 애니메이션을 적용하는 JavaScript
+        const mouthImage = document.querySelector('.mouth');
+        const sound = document.getElementById('sound'); // audio 요소 가져오기
+
+        mouthImage.addEventListener('click', () => {
+            // 클래스 'down'을 추가하여 애니메이션을 시작
+            mouthImage.classList.add('down');
+
+            // 소리 재생
+            sound.play();
+
+            // 0.1초 후에 다시 원래 위치로 돌아오도록 클래스 제거
+            setTimeout(() => {
+                mouthImage.classList.remove('down');
+            }, 100); // 0.1초 후
+        });
+    </script>
+</body>
+</html>
